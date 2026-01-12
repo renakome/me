@@ -1,0 +1,17 @@
+{
+  "title": "Renako (she/her)",
+  "subtitle": "Desenvolvedora curiosa — front-end, bots, small apps",
+  "update": "Atualizar",
+  "updating": "Atualizando...",
+  "noProjects": "Nenhum projeto encontrado na seção featured do README.",
+  "projects": "Projetos",
+  "language": "Idioma",
+  "themeDark": "Tema escuro",
+  "themeLight": "Tema claro",
+  "contact": "Contato",
+  "about": "Sobre mim",
+  "featuredHeading": "Projetos em destaque",
+  "refreshSuccess": "Projetos atualizados",
+  "refreshError": "Falha ao atualizar projetos",
+  "loading": "Carregando..."
+}
