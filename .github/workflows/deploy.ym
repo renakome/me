@@ -1,0 +1,50 @@
+# YAML workflow to build a static Next.js site using `next export` and deploy the generated `out/` folder to the `gh-pages` branch.
+# Comments are in English as requested.
+
+name: Deploy static Next.js site to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: {}
+
+# Require write permissions so the action can publish the site
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # fetch full history so `gh-pages` operations behave correctly
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        # Use npm ci for reproducible installs in CI
+        run: npm ci
+
+      - name: Build and export Next.js site
+        # This runs `next build` and `next export`, which produces a static `out/` folder.
+        # If your site is served under a repository path (e.g. /me), set NEXT_PUBLIC_BASE_PATH secret to "/me".
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ secrets.NEXT_PUBLIC_BASE_PATH }}
+        run: npm run export
+
+      - name: Deploy to GitHub Pages (publish out/ to gh-pages branch)
+        # Use peaceiris/actions-gh-pages to push the contents of `out/` to the `gh-pages` branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
