@@ -32,7 +32,7 @@ jobs:
 
       - name: Install dependencies
         # Use npm ci for reproducible installs in CI
-        run: nmnpm install --save-dev typescript @types/react @types/react-dom @types/node
+        run: npm install --save-dev typescript @types/react @types/react-dom @types/node
 
       - name: Build and export Next.js site
         # This runs `next build` and `next export`, which produces a static `out/` folder.
