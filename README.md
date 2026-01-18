@@ -27,4 +27,5 @@ How to build & export for GitHub Pages
 
 Notes
 - There are no server API routes — parsing happens on the client for refreshs, so the exported site works on GitHub Pages.
+- The unused API route was removed to keep `next export` fully compatible with GitHub Pages.
 - If raw.githubusercontent.com becomes blocked by CORS, consider using the GitHub API with a token (requires serverless or a different hosting).
