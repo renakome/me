@@ -10,6 +10,7 @@ const assetPrefix = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const nextConfig = {
   reactStrictMode: true,
   output: "export", // required for static export (next export)
+  trailingSlash: true, // ensure GitHub Pages resolves /route/ to index.html
   basePath: basePath || undefined,
   assetPrefix: assetPrefix || undefined,
 };
